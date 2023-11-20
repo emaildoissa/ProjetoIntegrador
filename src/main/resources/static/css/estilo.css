@@ -1,0 +1,143 @@
+.sticky-header .logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    z-index: 100;
+  }
+  .sticky-header .sidebar-left {
+    top: 60px;
+  
+  }
+  .sticky-header .header-section {
+    position: fixed;
+    top: 0;
+    left: 240px;
+    width: 100%;
+    z-index: 1000;
+  }
+  .sticky-header .body-content {
+    padding: 60px 15px 50px 15px;
+  }
+  
+
+.body-content {
+    margin-left: 240px;
+    background: #f3f4f5;
+    min-height: 950px;
+    position: relative;
+  }
+  
+  .border-less-list li {
+    border-bottom: none !important;
+  }
+
+.logo {
+    height: 60px;
+    line-height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 240px;
+    z-index: 100;
+    background-color: #1e4369;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+  }
+  .logo a {
+    font-size: 18px;
+    color: #fff !important;
+    margin: 0;
+    text-decoration: none;
+    display: block;
+    float: none;
+    font-weight: 900;
+  }
+  .logo a i {
+    font-size: 24px;
+    color: #7cd8a9;
+    padding-right: 5px;
+  }
+  
+  
+@media (min-width: 1024px) {
+    .body-content {
+        min-height: 720px;
+    }
+}
+
+@media (max-width: 414px) {
+    .btn-mb-5 .btn {
+        margin-bottom: 5px;
+    }
+    .bs-pagination .pagination-lg {
+        display: none;
+    }
+    .button-list .btn {
+        margin-top: 5px;
+    }
+    .box {
+        overflow-x: auto;
+        width: 100%;
+        display: block;
+    }
+
+    .nav {
+        flex-wrap: nowrap;
+    }
+    .timeline {
+        width: 100%;
+        margin: 0px;
+    }
+}
+
+.card .card-body .card-text {
+    color: #888;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+
+.m-b-30 {
+    margin-bottom: 30px;
+}
+
+.btnPesquisar{
+    margin-top: 30px;
+}
+
+
+.footer {
+    background: #e9e9eb;
+    padding: 15px 20px;
+    color: #232425;
+    font-size: 14px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+@media (max-width: 768px) {
+    .box {
+        overflow-x: auto;
+        width: 100%;
+        display: block;
+    }
+   
+    .presonal-inform ul li {
+        width: 100%;
+    }
+    .nav {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 1024px) {
+    .box {
+        overflow-x: auto;
+        width: 100%;
+        display: block;
+    }
+}
