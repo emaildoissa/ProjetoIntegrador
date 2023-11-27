@@ -1,0 +1,33 @@
+<div th:fragment="osClientes">
+    <table class="table table-container table-stripped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Acessorios</th>
+                <th>Defeito</th>
+                <th>Obs</th>
+                <th>Ações</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ordem : ${ordensDoCliente}" >
+                
+                <td th:text="${ordem.id}"></td>
+                <td th:text="${ordem.acessorios}"></td>
+                <td th:text="${ordem.id}"></td>
+                <td th:text="${ordem.marca}"></td>
+                <td th:text="${ordem.tipo}"></td>
+                <td th:text="${ordem.acessorios}"></td>
+                <td th:text="${ordem.defeito}"></td>
+                <td th:text="${ordem.obs}"></td>
+                
+                <td>
+                    <a id="ordemBtn" class="btn btn-primary" th:href="@{'/atualizarOS/' + ${ordem.id}}">Editar OS</a>
+                    <a id="ordemBtn" class="btn btn-danger" th:href="@{'/excluirOS/' + ${ordem.id}}">Excluir OS</a> 
+                </td>
+            </tr>
+        <tbody>
+    </table>
+</div>

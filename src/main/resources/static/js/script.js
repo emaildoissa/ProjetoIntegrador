@@ -4,10 +4,18 @@ $(document).ready(function () {
         $(this).parent().toggleClass('active');
     });
 
-    $("#ordemServico").show();
+    $("#addClientes").click(function () {
+        
+        if ($(this).parent().hasClass('active')) {
+            
+        }
+    });
+});
+
+    //$("#ordemServico").show();
 
     
-    $("#addClientes").click(function (e) {
+    /*$("#addClientes").click(function (e) {
         e.preventDefault();
       
         $("#formularioAddClientes").show();        
@@ -69,7 +77,7 @@ $(document).ready(function () {
     });
 
 });
-listarOS
+
 function validarCadastroCliente() {
     var nome = document.getElementById('Nome').value;
     var cep = document.getElementById('cpf').value;
@@ -140,3 +148,69 @@ function validarEditarOS() {
         alert('Edição feita com sucesso');
     }
 }   
+/*
+*/
+$('#pesquisarCliente').click(function () {
+            var clienteNome = $('#clientePesquisa').val();
+
+            // Fazer a requisição AJAX para pesquisar clientes
+            $.ajax({
+                type: "GET",
+                url: "/pesquisarClientePorNome",
+                data: {clienteNome: clienteNome},
+                success: function (data) {
+                    // Atualizar a área de resultados
+                    $('#resultadosPesquisa').html(data);
+                }
+            });
+        });
+
+        // Lidar com o clique nos itens de cliente encontrados
+        $(document).on('click', '.cliente-item', function () {
+            var clienteId = $(this).attr('th:data-cliente-id');
+            
+            // Preencher o campo de cliente na OS com o ID do cliente selecionado
+            $('#clienteId').val(clienteId);
+
+            // Limpar a área de resultados
+            $('#resultadosPesquisa').html('');
+        });
+
+
+// Lidar com o clique nos itens de cliente encontrados
+$(document).on('click', '.cliente-item', function () {
+    var clienteId = $(this).attr('th:data-cliente-id');
+    
+    // Preencher o campo de cliente na OS com o ID do cliente selecionado
+    $('#clienteId').val(clienteId);
+
+    // Limpar a área de resultados
+    $('#osClientes').html('');
+    
+});
+
+
+$('#pesquisarCliente').click(function () {
+            var clienteNome = $('#clientePesquisa').val();
+
+            $.ajax({
+                type: "GET",
+                url: "/listarOrdensPorCliente",
+                data: {clienteNome: clienteNome},
+                success: function (data) {
+                    // Atualizar a área de resultados
+                    $('#resultadoOSPesquisa').html(data);
+                }
+            });
+        });
+
+        // Lidar com o clique nos itens de cliente encontrados
+        $(document).on('click', '.cliente-item', function () {
+            var clienteId = $(this).attr('th:data-cliente-id');
+            
+            // Preencher o campo de cliente na OS com o ID do cliente selecionado
+            $('#clienteId').val(clienteId);
+
+            // Limpar a área de resultados
+            $('#resultadoOSPesquisa').html('');
+        });

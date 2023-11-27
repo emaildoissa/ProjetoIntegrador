@@ -1,0 +1,40 @@
+<!-- menu-fragment.html -->
+<div class="sidebar-left" th:fragment="menu">
+    <div class="sidebar-left-info">
+        <h6 class="user-box">
+            <div class="d-flex justify-content-center">
+                <img th:src="@{/img/logo.png}" alt="" class="img-fluid rounded-circle">
+            </div>
+            <div class="text-center text-white mt-2">
+                <p>Administrador</p>
+                <!--<a href="#">sair</a>-->
+            </div>
+        </h6>
+    </div>
+    <!--começo sidebar nav-->
+    <ul class="side-navigation">
+        <li class="active">
+            <a href="/" id="inicio"><i class="mdi mdi-gauge"></i> <span>Início</span></a>
+        </li>
+        <!---------- Cadastros -------->
+        <li class="menu-list"><a href="#"><i class="mdi mdi-buffer"></i> <span>Cadastros</span></a>
+            <ul class="child-list">
+                <li><a href="/criarCliente" id="addClientes">Adicionar Cliente</a></li>                       
+                <!--<li><a href="#">Tecnicos</a></li>
+                <li><a href="#">Serviços</a></li> -->
+            </ul>
+        </li>
+
+        <!---------- Ordem de Serviço -------->
+
+        <li class="menu-list"><a href="#"><i class="mdi mdi-buffer"></i> <span>Ordem de Serviço </span></a>
+            <ul class="child-list">
+                <li><a href="/abrirOS" id="addOS">Abrir nova O.S</a></li>
+                <li><a href="/listarOS"id="alterarOS">Listar O.S</a></li>
+                <li><a href="/localizarOS" id="localizarOS">Localizar O.S</a></li>
+                <!--<li><a href="/apagarOS" id="apagarOS">Excluir O.S</a></li> -->
+            </ul>
+        </li>
+        </li>
+    </ul>
+</div>

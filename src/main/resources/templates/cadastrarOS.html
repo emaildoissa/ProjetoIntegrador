@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <html xmlns:th="http://www.thymeleaf.org">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Projeto Integrador Senac</title>
+
+        <link th:href="@{/css/menu.css}" rel="stylesheet" />
+        <link th:href="@{/css/estilo.css}" rel="stylesheet" />
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    </head>
+    <body class="sticky-header">
+        <section>
+            <!-- Começo sidebar-->
+            <div th:replace="menu :: menu"></div>
+            <!-- body -->
+            <div class="body-content">
+                <!-- header -->
+                <div class="header-section">
+                    <!--logo-->
+                    <div class="logo">
+                        <a href="#">
+                            <span class="logo-img">
+
+                            </span>
+                            <i class="fa fa-maxcdn"></i>
+                            <span class="brand-name">Projeto Integrador</span>
+                        </a>
+                    </div> 
+
+                </div>
+                <!-- final header -->
+
+                <div class="container-fluid">
+                    <div class="page-head">
+                        <h4 class="mt-2 mb-2"></h4>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <h5 class="header-title pb-3">Numero de clientes</h5>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <h5 class="header-title pb-3">Numero de Ordens</h5>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <h5 class="header-title pb-3">Valor recebido no mes</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                            <form th:action="@{/salvarOS}" th:object="${ordem}" method="post" class="col-lg-12 col-sm-12">
+                                
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+                                        <h5 class="header-title pb-3">Cadastro de OS</h5>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div>
+                                                    <div class="panel panel-primary">
+                                                        <div class="panel-body">
+                                                            <div class="form-group">
+                                                                <div class="col-md-11 control-label">
+                                                                    <p class="help-block">
+                                                                    <h11>*</h11> Campo Obrigatório
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-sm">
+                                                                        <label class="control-label">Marca<h11>*</h11></label>
+                                                                        <input id="marca" name="marca" placeholder="marca" class="form-control input-md"  type="text" th:field="*{marca}">
+                                                                    </div>
+                                                                    <div class="col-sm">
+                                                                        <label class="control-label">Tipo<h11>*</h11></label>
+                                                                        <input id="tipo" name="tipo" placeholder="Tipo equipamento" class="form-control input-md"  type="text" th:field="*{tipo}">
+                                                                    </div>
+                                                                    <div class="col-sm">
+                                                                        <label class="control-label">Acessorios<h11>*</h11></label>
+                                                                        <input id="acessorios" name="acessorios" class="form-control input-md"  type="text" th:field="*{acessorios}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group"></div>
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-sm">
+                                                                        <label class="control-label">Defeito/Reclamação<h11>*</h11></label>
+                                                                        <input id="def_recl" name="def_recl" placeholder="" class="form-control input-md"  type="text" th:field="*{defeito}">
+                                                                    </div>
+                                                                    <div class="col-sm">
+                                                                        <label class="control-label">Obs</label>
+                                                                        <input id="obs" name="obs" class="form-control input-md"  type="text" th:field="*{obs}">   
+                                                                    </div> <input type="hidden" th:field="*{cliente.id}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group"></div>   
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label" for="Cadastrar"></label>
+                                                    <div class="col-md-8">
+                                                        <input type="hidden" th:field="*{cliente.id}" />
+                                                        <button id="Cadastrar" name="Cadastrar" class="btn btn-success" onclick="return validarCadastroOS();" type="submit">Cadastrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form> 
+                        <!--</div> -->
+                    </div>
+                </div>
+            </div>
+            <!--fim container-->
+            <!--footer-->
+            <footer class="footer">
+                2023 Projeto Integrador Senac
+            </footer>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script  type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script  type="text/javascript" th:src="@{/js/cep.js}"></script>
+</body>
+</html>

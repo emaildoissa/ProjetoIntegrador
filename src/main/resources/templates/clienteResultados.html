@@ -1,0 +1,22 @@
+<div th:fragment="clienteResultados">
+    <table class="table table-container table-stripped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}" class="cliente-item" th:data-cliente-id="${cliente.id}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nome}"></td>
+                <td th:text="${cliente.telefone}"></td>
+                <td>
+                    <a id="ordemBtn" class="btn btn-primary" th:href="@{'/adicionarOS/' + ${cliente.id}}">Criar OS</a>
+                </td>
+            </tr>
+        <tbody>
+    </table>
+</div>
+            

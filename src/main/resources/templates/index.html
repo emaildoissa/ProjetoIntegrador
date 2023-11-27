@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
          <html xmlns:th="http://www.thymeleaf.org">
@@ -9,67 +10,14 @@
         <link th:href="@{/css/menu.css}" rel="stylesheet" />
         <link th:href="@{/css/estilo.css}" rel="stylesheet" />
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-        
-        
-        <style>
-            .formulario {
-                display: none;
-            }
-        </style>
 
     </head>
 
     <body class="sticky-header">
         <section>
             <!-- Começo sidebar-->
-            <div class="sidebar-left">
-                <div class="sidebar-left-info">
-                    <h6 class="user-box">
-                        <div class="d-flex justify-content-center">
-                           
-                            <img th:src="@{/img/logo.png}" alt="" class="img-fluid rounded-circle">
-                            
-                        </div>
-
-                        <div class="text-center text-white mt-2">
-
-                            <p>Administrador</p>
-                            <!--<a href="#">sair</a>-->
-                        </div>
-                    </h6>
-                </div>
-
-                <!--começo sidebar nav-->
-                <ul class="side-navigation">
-                    <li class="active">
-                        <a href="#" id="inicio"><i class="mdi mdi-gauge"></i> <span>Início</span></a>
-                    </li>
-
-                    <!---------- Cadastros -------->
-                    <li class="menu-list"><a href="#"><i class="mdi mdi-buffer"></i> <span>Cadastros</span></a>
-                        <ul class="child-list">
-                            <li><a href="#" id="addClientes">Adicionar Cliente</a></li>                       
-                            <!--<li><a href="#">Tecnicos</a></li>
-                            <li><a href="#">Serviços</a></li> -->
-                        </ul>
-                    </li>
-
-                    <!---------- Ordem de Serviço -------->
-
-                    <li class="menu-list"><a href="#"><i class="mdi mdi-buffer"></i> <span>Ordem de Serviço </span></a>
-
-                        <ul class="child-list">
-                            <li><a href="#" id="addOS">Abrir nova O.S</a></li>
-                            <li><a href="#"id="alterarOS">Alterar O.S</a></li>
-                            <li><a href="#" id="localizarOS">Localizar O.S</a></li>
-                            <li><a href="#" id="apagarOS">Excluir O.S</a></li>
-                        </ul>
-                    </li>
-                    </li>
-                </ul>
-                <!--sidebar nav fim-->
-            </div>
-        </div><!-- sidebar esquerda fim-->
+            
+       <div th:replace="menu :: menu"></div>
 
         <!-- body -->
         <div class="body-content">
@@ -134,223 +82,22 @@
                                                     <tr>
                                                         <th>OS Numero</th>
                                                         <th>cliente</th>
-                                                        <th>Entrada</th>
-                                                        <th>saida</th>
-                                                        <th>Situação</th>
-                                                        <th>total</th>
+                                                        <th>Ações</th>
+                                                        
                                                     </tr>
                                                 </thead>
+                                                
                                                 <tbody>
-                                                    <tr>
-                                                        <td>teste</td>
-                                                        <td>teste</td>
-                                                        <td>teste</td>
-                                                        <td>61</td>
-                                                        <td>2011/04/25</td>
-                                                        <td>80 Reais</td>
-                                                    </tr>
-                                                </tbody>
+                                                    <tr th:each="ordem : ${ordem}" >
+                <td th:text="${ordem.id}"></td>
+                <td th:text="${ordem.cliente.nome}"></td>
+                <td>
+                    <a id="ordemBtn" class="btn btn-primary" th:href="@{'/atualizarOS/' + ${ordem.id}}">Ver OS</a>
+                    <a id="ordemBtn" class="btn btn-danger" th:href="@{'/excluirOS/' + ${ordem.id}}">Excluir OS</a> 
+                </td>
+                                                              </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--formuladio adição de clientes-->
-                    <form id="formularioAddClientes" action="#" method="post" class="formulario col-lg-12 col-sm-12">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <h5 class="header-title pb-3">Cadastro de clientes</h5>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <fieldset>
-                                            <div class="panel panel-primary">
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <div class="col-md-11 control-label">
-                                                            <p class="help-block">
-                                                            <h11>*</h11> Campo Obrigatório
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Nome<h11>*</h11></label>
-                                                                <input id="Nome" name="Nome" placeholder="Nome" class="form-control input-md" type="text">
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <label class="control-label">CPF<h11>*</h11></label>
-                                                                <input id="cpf" name="cpf" placeholder="Apenas números" class="form-control input-md"  type="text">
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Email</label>
-                                                                <input id="email" name="email" placeholder="Email" class="form-control input-md" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group"></div>
-
-                                                    <div class="form-group"></div>
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Telefone<h11>*</h11></label>
-                                                                <input id="telefone" name="telefone" placeholder="Apenas números" class="form-control input-md"  type="text">
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <label class="control-label" for="CEP">CEP <h11>*</h11></label>
-                                                                <input id="cep" name="cep" placeholder="Apenas números" class="form-control input-md" type="search" maxlength="8" pattern="[0-9]+$">
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <button type="button" class="btnPesquisar btn btn-primary" onclick="pesquisacep(cep.value)">Pesquisar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group"></div>
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-sm">
-                                                            <label class="control-label">Endereço</label>
-                                                            <input id="rua" name="rua" class="form-control" placeholder="Endereço"  type="text">
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <label class="control-label">Numero</label>
-                                                            <input id="numero" name="numero" class="form-control" placeholder="Numero"  type="text">
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <label class="control-label">Bairro</label>
-                                                            <input id="bairro" name="bairro" class="form-control" placeholder="Bairro"  type="text">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group"></div>
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-sm">
-                                                            <label class="control-label">Cidade</label>
-                                                            <input id="cidade" name="cidade" class="form-control" placeholder="cidade"  type="text">
-                                                        </div>
-                                                        <div class="col-sm">
-                                                            <label class="control-label">UF</label>
-                                                            <input id="uf" name="uf" class="form-control" placeholder="uf"  type="text">
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Botao de enviar -->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="Cadastrar"></label>
-                                                <div class="col-md-8">
-                                                    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" onclick="return validarCadastroCliente();" type="button">Cadastrar</button>
-
-
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form> 
-                    <!-- Pesquisar OS-->
-                    <div id="pesquisarOS" class=" formulario col-lg-12 col-sm-12">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <h5 class="header-title pb-3">Ordens de Serviço</h5>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <label class="control-label">Pesquisar OS</label>
-                                                <input id="PesquisarOS" name="pesquisarOS" class="form-control" placeholder="Numero da OS"  type="text">
-                                            </div>
-                                            <div class="col-sm">                           
-
-                                                <button id="Cadastrar" name="Cadastrar" class="btnPesquisar btn btn-success" onclick="return validarPesquisarOS();" type="button">Localizar</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group"></div>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover m-b-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>OS Numero</th>
-                                                        <th>cliente</th>
-                                                        <th>Entrada</th>
-                                                        <th>saida</th>
-                                                        <th>Situação</th>
-                                                        <th>total</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Editar OS -->
-                    <div id="editarOS" class=" formulario col-lg-12 col-sm-12">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <h5 class="header-title pb-3">Ordens de Serviço</h5>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <label class="control-label">Editar OS</label>
-                                                <input id="EditarOS" name="EditarOS" class="form-control" placeholder="Numero da OS"  type="text">
-                                            </div>
-                                            <div class="col-sm">                           
-
-                                                <button id="Cadastrar" name="Cadastrar" class="btnPesquisar btn btn-success" onclick="return validarEditarOS();" type="button">Editar</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group"></div>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover m-b-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>OS Numero</th>
-                                                        <th>cliente</th>
-                                                        <th>Entrada</th>
-                                                        <th>saida</th>
-                                                        <th>Situação</th>
-                                                        <th>total</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--Excluir OS-->
-                    <div id="excluirOS" class=" formulario col-lg-12 col-sm-12">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <h5 class="header-title pb-3">Excluir Ordem de Serviço</h5>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <label class="control-label">Excluir OS</label>
-                                                <input id="ExcluirOS" name="excluir" class="form-control" placeholder="Numero da OS"  type="text">
-                                            </div>
-                                            <div class="col-sm">                           
-
-                                                <button id="Cadastrar" name="Cadastrar" class="btnPesquisar btn btn-success" onclick="return validarExcluirOS();" type="button">Excluir</button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group"></div>
-
                                     </div>
                                 </div>
                             </div>
@@ -358,88 +105,10 @@
                     </div>
                 </div>
             </div>
-
-            </form>
-
-            <!-- Formulario de adiçao OS-->
-            <form id="formularioAddOS" action="#" method="post" class="formulario col-lg-12 col-sm-12">
-
-                <div class="card m-b-30">
-                    <div class="card-body">
-                        <h5 class="header-title pb-3">Cadastro de OS</h5>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div>
-                                    <form class="form-horizontal" action="#" method="post">
-                                        <fieldset>
-                                            <div class="panel panel-primary">
-
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-
-                                                        <div class="col-md-11 control-label">
-                                                            <p class="help-block">
-                                                            <h11>*</h11> Campo Obrigatório
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Marca<h11>*</h11></label>
-                                                                <input id="marca" name="marca" placeholder="marca" class="form-control input-md"  type="text">
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Tipo<h11>*</h11></label>
-                                                                <input id="tipo" name="tipo" placeholder="Tipo equipamento" class="form-control input-md"  type="text" >
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Acessorios<h11>*</h11></label>
-                                                                <input id="acessorios" name="acessorios" class="form-control input-md"  type="text" >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group"></div>
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Defeito/Reclamação<h11>*</h11></label>
-                                                                <input id="def_recl" name="def_recl" placeholder="" class="form-control input-md"  type="text">
-                                                            </div>
-                                                            <div class="col-sm">
-                                                                <label class="control-label">Obs</label>
-                                                                <input id="obs" name="obs" class="form-control input-md"  type="text">   
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group"></div>   
-                                            </div>
-                                            </div>
-
-                                            <!-- Botao de enviar -->
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="Cadastrar"></label>
-                                                <div class="col-md-8">
-
-
-                                                    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" onclick="return validarCadastroOS();" type="button">Cadastrar</button>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                        </form>
+           
                     </div>
-                    <!-- Listagem OS-->
-
+                    
                 </div>
-
         </div>
 
     </div>
